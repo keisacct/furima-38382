@@ -23,106 +23,45 @@
 | title              | string                    | null: false                    |
 | description        | text                      | null: false                    |
 | price              | integer                   | null: false                    |
-| is_seller          | references                | null: false, foreign_key: true |
-| is_sold            | boolean                   | null: false, default: false    |
-| category           | references                | null: false, foreign_key: true |
-| quality            | references                | null: false, foreign_key: true |
-| postage            | references                | null: false, foreign_key: true |
-| shipping_day       | references                | null: false, foreign_key: true |
-| prefecture         | references                | null: false, foreign_key: true |
+| user               | references                | null: false, foreign_key: true |
+| category_id        | references                | null: false, foreign_key: true |
+| quality_id         | references                | null: false, foreign_key: true |
+| postage_id         | references                | null: false, foreign_key: true |
+| shipping_day_id    | references                | null: false, foreign_key: true |
+| prefecture_id      | references                | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :categories
-- belongs_to :qualities
-- belongs_to :postages
-- belongs_to :shipping_days
-- belongs_to :prefectures
-- beloongs_to :purchases
-
-
-
-## categoriesテーブル
-| Column             | Type                      | Options                        |
-| ------------------ | ------------------------- | ------------------------------ |
-| category_option    | string                    | null: false                    |
-
-### Association
-- has_many :items
-
-#### Gem
-ative_hash
-
-## qualitiesテーブル
-| Column             | Type                      | Options                        |
-| ------------------ | ------------------------- | ------------------------------ |
-| quality_option     | string                    | null: false                    |
-
-### Association
-- has_many :items
-
-#### Gem
-ative_hash
-
-## postagesテーブル
-| Column             | Type                      | Options                        |
-| ------------------ | ------------------------- | ------------------------------ |
-| postage_option     | string                    | null: false                    |
-
-### Association
-- has_many :items
-
-#### Gem
-ative_hash
-
-## shipping_daysテーブル
-| Column             | Type                      | Options                        |
-| ------------------ | ------------------------- | ------------------------------ |
-| duration_option    | string                    | null: false                    |
-
-### Association
-- has_many :items
-
-#### Gem
-ative_hash
-
-## prefecturesテーブル
-| Column             | Type                      | Options                        |
-| ------------------ | ------------------------- | ------------------------------ |
-| prefecture_option  | string                    | null: false                    |
-
-### Association
-- has_many :items
-- has_many :addresses
-
-#### Gem
-ative_hash
+- belongs_to :user
+- belongs_to :category
+- belongs_to :quality
+- belongs_to :postage
+- belongs_to :shipping_day
+- belongs_to :prefecture
+- belongs_to :purchase
 
 ## purchasesテーブル
 | Column             | Type                      | Options                        |
 | ------------------ | ------------------------- | ------------------------------ |
-| is_purchaser       | references                | null: false, foreign_key: true |
+| user               | references                | null: false, foreign_key: true |
 | item               | references                | null: false, foreign_key: true |
-| purchase_info      | references                | null: false, foreign_key: true |
+| address            | references                | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- has_one :purchase_info
-- has_one :item
+- belongs_to :user
+- has_one :address
+- has_many :items
 
-## purchase_infoテーブル
+## addressesテーブル
 | Column             | Type                      | Options                        |
 | ------------------ | ------------------------- | ------------------------------ |
-| card_number        | string                    | null: false                    |
-| card_expired_date  | string                    | null: false                    |
-| cvc                | string                    | null: false                    |
 | zipcode            | string                    | null: false                    |
-| prefecture         | references                | null: false, foreign_key: true |
+| prefecture_id      | references                | null: false, foreign_key: true |
 | city               | string                    | null: false                    |
 | street             | string                    | null: false                    |
-| building           | string                    | null: false                    |
+| building           | string                    | null: true                     |
 | phone_number       | string                    | null: false                    |
-| purchases          | references                | null: false, foreign_key: true |
+| purchase           | references                | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :purchases
+- belongs_to :purchase
+- belongs_to :prefecture

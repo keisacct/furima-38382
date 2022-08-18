@@ -14,7 +14,8 @@
 | dob                | date                      | null: false                    |
 
 ### Association
-- has_many :items, through [:sellers, :purchasers]
+- has_many :items
+- has_many :purchases
 
 ## itemsテーブル
 | Column             | Type                      | Options                        |

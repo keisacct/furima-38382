@@ -37,7 +37,7 @@
 - belongs_to :postage
 - belongs_to :shipping_day
 - belongs_to :prefecture
-- belongs_to :purchase
+- has_one :purchase
 
 ## purchasesテーブル
 | Column             | Type                      | Options                        |

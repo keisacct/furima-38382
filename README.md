@@ -24,11 +24,11 @@
 | description        | text                      | null: false                    |
 | price              | integer                   | null: false                    |
 | user               | references                | null: false, foreign_key: true |
-| category_id        | references                | null: false, foreign_key: true |
-| quality_id         | references                | null: false, foreign_key: true |
-| postage_id         | references                | null: false, foreign_key: true |
-| shipping_day_id    | references                | null: false, foreign_key: true |
-| prefecture_id      | references                | null: false, foreign_key: true |
+| category_id        | integer                   | null: false                    |
+| quality_id         | integer                   | null: false                    |
+| postage_id         | integer                   | null: false                    |
+| shipping_day_id    | integer                   | null: false                    |
+| prefecture_id      | integer                   | null: false                    |
 
 ### Association
 - belongs_to :user
@@ -44,21 +44,20 @@
 | ------------------ | ------------------------- | ------------------------------ |
 | user               | references                | null: false, foreign_key: true |
 | item               | references                | null: false, foreign_key: true |
-| address            | references                | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - has_one :address
-- has_many :items
+- belongs_to :item
 
 ## addressesテーブル
 | Column             | Type                      | Options                        |
 | ------------------ | ------------------------- | ------------------------------ |
 | zipcode            | string                    | null: false                    |
-| prefecture_id      | references                | null: false, foreign_key: true |
+| prefecture_id      | integer                   | null: false                    |
 | city               | string                    | null: false                    |
 | street             | string                    | null: false                    |
-| building           | string                    | null: true                     |
+| building           | string                    |                                |
 | phone_number       | string                    | null: false                    |
 | purchase           | references                | null: false, foreign_key: true |
 

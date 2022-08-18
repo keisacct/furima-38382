@@ -1,24 +1,66 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type                      | Options                        |
+| ------------------ | ------------------------- | -------------------------------|
+| nickname           | string                    | null: false                    |
+| email              | string                    | null: false, unique: true      |
+| encrypted_password | string                    | null: false                    |
+| last_name_kanji    | string                    | null: false                    |
+| first_name_kanji   | string                    | null: false                    |
+| last_name_kata     | string                    | null: false                    |
+| first_name_kata    | string                    | null: false                    |
+| dob                | date                      | null: false                    |
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :purchases
 
-* System dependencies
+## itemsテーブル
+| Column             | Type                      | Options                        |
+| ------------------ | ------------------------- | -------------------------------|
+| title              | string                    | null: false                    |
+| description        | text                      | null: false                    |
+| price              | integer                   | null: false                    |
+| user               | references                | null: false, foreign_key: true |
+| category_id        | integer                   | null: false                    |
+| quality_id         | integer                   | null: false                    |
+| postage_id         | integer                   | null: false                    |
+| shipping_day_id    | integer                   | null: false                    |
+| prefecture_id      | integer                   | null: false                    |
 
-* Configuration
+### Association
+- belongs_to :user
+- belongs_to :category
+- belongs_to :quality
+- belongs_to :postage
+- belongs_to :shipping_day
+- belongs_to :prefecture
+- has_one :purchase
 
-* Database creation
+## purchasesテーブル
+| Column             | Type                      | Options                        |
+| ------------------ | ------------------------- | ------------------------------ |
+| user               | references                | null: false, foreign_key: true |
+| item               | references                | null: false, foreign_key: true |
 
-* Database initialization
+### Association
+- belongs_to :user
+- has_one :address
+- belongs_to :item
 
-* How to run the test suite
+## addressesテーブル
+| Column             | Type                      | Options                        |
+| ------------------ | ------------------------- | ------------------------------ |
+| zipcode            | string                    | null: false                    |
+| prefecture_id      | integer                   | null: false                    |
+| city               | string                    | null: false                    |
+| street             | string                    | null: false                    |
+| building           | string                    |                                |
+| phone_number       | string                    | null: false                    |
+| purchase           | references                | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :purchase
+- belongs_to :prefecture

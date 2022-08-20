@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-    # before_action :basic_auth
-    # 上記をコメントアウトする際に、HerokuにBASIC_AUTH_USERとBASIC_AUTH_PASSWORDを設定する
     before_action :configure_permitted_parameters, if: :devise_controller?
 
 

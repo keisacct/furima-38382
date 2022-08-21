@@ -5,7 +5,7 @@ function price (){
     let taxPrice = document.getElementById("add-tax-price");
     let profit = document.getElementById("profit")
     itemPrice.addEventListener('input', () => {
-        valueTaxPrice = itemPrice.value * valueTax;
+        valueTaxPrice = Math.floor(itemPrice.value * valueTax);
         valueProfit = itemPrice.value - valueTaxPrice;
         taxPrice.textContent = valueTaxPrice;
         profit.textContent = valueProfit;

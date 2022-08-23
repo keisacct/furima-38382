@@ -1,10 +1,13 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
     before_action :move_to_index, only: :edit
-
     
     def index
         @items = Item.all.order(created_at: "DESC")
+    end
+
+    def show
+        @item = Item.find(params[:id])
     end
 
     def new

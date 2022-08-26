@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe PurchaseAddress, type: :model do
   before do
     @purchase_address = FactoryBot.build(:purchase_address)
+    @purchase_address.item_id = Faker::Number.between(from: 1, to: 99)
+    @purchase_address.user_id = Faker::Number.between(from: 1, to: 99)
   end
 
   describe '購入機能' do
